@@ -14,15 +14,13 @@ class SerialPort(object):
     def __init__(self,port,baudrate):
         self.port = port
         self.baudrate = baudrate
-
-    def connect(self):
-
+        self.connection = ''
         try:
-            self.connection = serial.Serial(port=self.device, baudrate=self.baudrate)
+            self.connection = serial.Serial(port=self.port, baudrate=self.baudrate)
             logger.info('Connected to ', self.connection.portstr)
         except:
             logger.error('connection failed')
-            logger.error(self.connection.portstr)
+            #logger.error(self.connection.portstr)
 
     def readline(self):
         try:
