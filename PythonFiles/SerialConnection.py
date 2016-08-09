@@ -17,10 +17,9 @@ class SerialPort(object):
         self.connection = ''
         try:
             self.connection = serial.Serial(port=self.port, baudrate=self.baudrate)
-            logger.info('Connected to ', self.connection.portstr)
+            logger.info(""'Connected to '"".format(self.connection.portstr))
         except:
             logger.error('connection failed')
-            #logger.error(self.connection.portstr)
 
     def readline(self):
         try:
