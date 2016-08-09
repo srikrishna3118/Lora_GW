@@ -1,0 +1,7 @@
+ This is the generic program to run DORJI 1276 lora module.
+
+ The requirements:
+    Target platform - Onion Omega
+    Openwrt Linux
+
+ Packages required are giving below..
