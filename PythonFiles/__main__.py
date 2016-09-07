@@ -13,6 +13,7 @@ logging.info('Main:')
 
 Test = RF_TestBed.RF_TestBed()
 
-Test.listener()
+#Test.listener()
+Test.ping()
 
 print("finish")
