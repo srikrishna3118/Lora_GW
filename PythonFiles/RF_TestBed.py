@@ -19,26 +19,26 @@ class RF_TestBed:
         self.port = self.config.PORT
         self.state = 1
         self.data = ''
+        self.pingState = 0
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin, GPIO.IN)
-        #GPIO.add_event_detect(self.pin, GPIO.FALLING, callback=self.readEvent)
+        GPIO.add_event_detect(self.pin, GPIO.FALLING, callback=self.readEvent)
         self.conn = SerialConnection.SerialPort(self.port, 9600)
 
     def readEvent(self,channel):
         if (GPIO.input(channel) == 0):
             self.data = self.conn.readline()
-
-    def writeEvent(self,channel):
-        if(GPIO.input(channel)==1):
-            self.conn.writeline(self.data)
+        else:
+            if (self.pingState):
+                self.conn.writeline(self.data)
 
     def listener(self):
-        GPIO.add_event_detect(self.pin, GPIO.RAISING, callback=self.writeEvent)
+        GPIO.add_event_detect(self.pin, GPIO.RISING, callback=self.writeEvent)
         while(self.state == 1):
             time.sleep(2)
 
     def ping(self):
-        GPIO.add_event_detect(self.pin, GPIO.RAISING, callback=self.writeEvent)
+        self.pingState = 1
         while(self.state == 1):
             time.sleep(2)
 
