@@ -15,22 +15,22 @@ class SerialPort(object):
         self.connection = ''
         try:
             self.connection = serial.Serial(port=self.port, baudrate=self.baudrate)
-            logger.info(""'Connected to '"".format(self.connection.portstr))
+            logger.info("Connected to %s ", self.connection.portstr)
         except:
             logger.error('connection failed')
 
     def readline(self):
         try:
             bytesToRead = self.connection.inWaiting()
-            self.data = SerialPort.read(bytesToRead)
-            logger.info('received data:', self.data)
+            self.data = self.connection.readline(bytesToRead)
+            logger.info("Connected to %s ", self.connection.portstr)
             return self.data
         except:
             logger.error('connection failed')
 
     def writeline(self, data):
         try:
-            SerialPort.write(data.encode())
+            self.connection.write(data.encode())
             logger.info('write success')
         except:
             logger.error('write request failed')
