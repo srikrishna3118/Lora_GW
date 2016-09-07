@@ -2,6 +2,9 @@ _author_ = 'Srikrishna'
 
 import ConfigParser
 
+import logging
+logger = logging.getLogger(__name__)
+
 sections = 'Connection','Configuration','Testing'
 
 class MyConfiguration(object):

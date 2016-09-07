@@ -1,11 +1,9 @@
+_author_ = 'Srikrishna'
 import serial
 import time
 import struct
-#import onionGpio
-
+#import onionGpi
 import logging
-
-
 logger = logging.getLogger(__name__)
 
 

@@ -1,4 +1,4 @@
-import SerialConnection
+import RF_TestBed
 import glob
 import logging
 import logging.handlers
@@ -11,6 +11,8 @@ logging.basicConfig(filename=LOG_FILE,level=logging.DEBUG)
 
 logging.info('Main:')
 
-connection = SerialConnection.SerialPort('/dev/ttyUSB0',9600)
+Test = RF_TestBed.RF_TestBed()
+
+Test.listener()
 
 print("finish")
