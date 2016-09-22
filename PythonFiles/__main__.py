@@ -2,18 +2,20 @@ import RF_TestBed
 import glob
 import logging
 import logging.handlers
-#import PythonFiles.SerialConnection as Conn
+
 
 LOG_FILE = "syslog_GW.log"
-logging.basicConfig(filename=LOG_FILE,level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s %(message)s',filename=LOG_FILE,level=logging.DEBUG)
 
 
 
-logging.info('Main:')
+logging.info('Main:Started')
 
 Test = RF_TestBed.RF_TestBed()
 
+#Test.transmitter("hi buddy")
 #Test.listener()
-Test.ping()
+#Test.ping()
+Test.statistics()
 
 print("finish")
