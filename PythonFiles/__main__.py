@@ -1,4 +1,6 @@
 import RF_TestBed
+
+import sys
 import glob
 import logging
 import logging.handlers
@@ -13,9 +15,9 @@ logging.info('Main:Started')
 
 Test = RF_TestBed.RF_TestBed()
 
-#Test.transmitter("hi buddy")
-#Test.listener()
-#Test.ping()
-Test.statistics()
-
+try:
+    Test.Test()
+    Test.setValues(10,5)
+except Exception, e:
+    logging.error(e, exc_info=True)
 print("finish")

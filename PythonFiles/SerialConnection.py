@@ -1,4 +1,6 @@
 _author_ = 'Srikrishna'
+
+import sys
 import serial
 import time
 import struct
@@ -14,11 +16,11 @@ class SerialPort(object):
         self.baudrate = baudrate
         self.connection = ''
         self.data = ''
-        self.command = b"\xAF\xAF\x00\x00\xAF\x80\x02\x0E\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x9D\x0D\x0A"
         try:
             self.connection = serial.Serial(port=self.port, baudrate=self.baudrate)
             logger.info("Connected to %s ", self.connection.portstr)
-        except:
+        except Exception, e:
+            logging.error(e, exc_info=True)
             logger.error('connection failed')
 
     def readline(self):
@@ -27,7 +29,22 @@ class SerialPort(object):
             self.data = self.connection.readline()
             logger.info("data received: %s ", self.data)
             return self.data
-        except:
+        except Exception, e:
+            logging.error(e, exc_info=True)
+            logger.error('read request failed')
+
+    def readcmd(self):
+        try:
+            if (self.connection.inWaiting()):
+                self.data = self.connection.read()
+                resp = struct.unpack("!B", self.data)[0]
+                #logging.info("DATA %s",resp)
+                return resp
+                return self.data
+
+
+        except Exception, e:
+            logging.error(e, exc_info=True)
             logger.error('read request failed')
 
     def writeline(self, data):
@@ -38,5 +55,12 @@ class SerialPort(object):
             logger.error('write request failed')
 
     def writecommand(self,cmd):
-        pass
+        try:
+            if cmd is not None:
+                logging.info("command sequence: %s executed",cmd)
+                self.connection.write(cmd)
+
+        except Exception, e:
+            logging.error(e, exc_info=True)
+            logger.error('write request failed')
 
