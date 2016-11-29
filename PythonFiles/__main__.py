@@ -1,6 +1,9 @@
+_author_ = 'Srikrishna'
 import RF_TestBed
+import HttpService
 
 import sys
+import time
 import glob
 import logging
 import logging.handlers
@@ -15,9 +18,15 @@ logging.info('Main:Started')
 
 Test = RF_TestBed.RF_TestBed()
 
+
 try:
-    Test.Test()
-    Test.setValues(10,5)
+    #while 1:
+    #    HTTP.HTTP_GET()
+    #    time.sleep(10)
+    Test.Run()
+    #Test.setValues(10,5)
+
+
 except Exception, e:
     logging.error(e, exc_info=True)
 print("finish")

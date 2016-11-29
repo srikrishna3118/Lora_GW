@@ -10,6 +10,7 @@ import RPi.GPIO as GPIO
 
 import Config
 import SerialConnection
+import SocketListener
 from pprint import pprint
 import logging
 logger = logging.getLogger(__name__)
@@ -57,24 +58,7 @@ PARAMETERS = {
         '6':'17dBm',
         '7': '20dBm'
     }
-
-
-
-
-
 }
-
-
-RF_POWER = {
-    '1':'4dBm',
-    '2':'7dBm',
-    '3':'10dBm',
-    '4':'13dBm',
-    '5':'14dBm',
-    '6': '17dBm',
-    '7': '20dBm'
-}
-
 
 class RF_TestBed:
 
@@ -89,12 +73,15 @@ class RF_TestBed:
         self.state = 1
         self.data = ''
         self.command = b"\xAF\xAF\x00\x00\xAF\x80\x02\x0E\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x9D\x0D\x0A"
-        self.cmdResponse=[]
+        self.cmdResponse = []
         self.pingFlag = 0
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.pin, GPIO.IN)
-        #GPIO.add_event_detect(self.pin, GPIO.FALLING, callback=self.readEvent,bouncetime=2)
-        self.conn = SerialConnection.SerialPort(self.port, 9600)
+        if(self.module=="DORJI"):
+            GPIO.setmode(GPIO.BOARD)
+            GPIO.setup(self.pin, GPIO.IN)
+            self.conn = SerialConnection.SerialPort(self.port, 9600)
+
+        elif(self.module=="IC880A"):
+            self.conn = SocketListener.SocketServer(self.port)
 
     def readEvent(self,channel):
         if (GPIO.input(channel) == 0):
@@ -102,7 +89,7 @@ class RF_TestBed:
             self.pingFlag = 1
 
 
-    def Test(self):
+    def Run(self):
         logger.info("Testing Begins......")
         print(self.mode)
         if self.mode == "PING":
@@ -114,10 +101,21 @@ class RF_TestBed:
 
 
     def listener(self):
-        GPIO.add_event_detect(self.pin, GPIO.FALLING, callback=self.readEvent, bouncetime=2)
-        logger.info("Started listening....")
-        while(self.state == 1):
-            time.sleep(2)
+        if self.module == "DORJI":
+            GPIO.add_event_detect(self.pin, GPIO.FALLING, callback=self.readEvent, bouncetime=2)
+            logger.info("Module %s",self.module)
+            logger.info("Started listening....")
+            while(self.state == 1):
+                time.sleep(2)
+
+        elif self.module == "IC880A":
+            logger.info("Module %s", self.module)
+            logger.info("Started listening")
+            self.conn.connect()
+
+
+
+
 
     def ping(self):
         self.pingFlag = 1
@@ -230,18 +228,8 @@ class RF_TestBed:
         crc = int(crc/256)
 
         self.cmdResponse[23] = crc  # update the crc
-
-
-
-
-
         cmd = bytes()
         cmd = cmd.join((struct.pack('B', val) for val in self.cmdResponse))
-
-
-        pprint(cmd)
-
-
         try:
             self.conn.writecommand(cmd)
             test = 0
@@ -271,9 +259,14 @@ class RF_TestBed:
             logging.info("DEVICE ID     : %s", device_ID)
             logging.info("NET_ID        : %s", newcmdResponse[18])
             logging.info("RF_POWER      : %s", PARAMETERS["RF_POWER"][str(newcmdResponse[19])])
-
-
         except Exception, e:
             logging.error(e, exc_info=True)
 
+
+    def datalogger(self):
+        try:
+            logger.info("logging Data")
+
+        except Exception, e:
+            logger.error(e, exe_info=True)
 

@@ -1,7 +1,30 @@
  This is the generic program to run DORJI 1276 lora module.
 
  The requirements:
-    Target platform - Onion Omega
-    Openwrt Linux
+    Target platform - Raspberry Pi
+    OS              - Raspbian
+
 
  Packages required are giving below..
+    Python > 2.7
+
+
+ usage lora.conf is the key
+
+    connection has details related to connecting to the radio interface
+        if radio is dorji interface
+        PORT = /dev/tty{uart/usb port dorji module is connected}
+        if IMST concentrator is connected
+        PORT = port at which imst gateway is configured to send send tcp data ex: 1680 port
+
+
+    configuration gives details of module and the other parameters to configure the radio to listen properly.
+
+        eg:
+        for DORJI module
+        MODULE = DORJI
+        AUXPIN = pin connected to DORJI AUX pin
+
+
+        for ISMT concentrator
+        MODULE = IC880A
