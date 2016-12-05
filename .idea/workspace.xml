@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2349028-91d4-476a-b1f9-0849297ff149" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonFiles/HttpService.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonFiles/SocketListener.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonFiles/RF_TestBed.py" afterPath="$PROJECT_DIR$/PythonFiles/RF_TestBed.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonFiles/__main__.py" afterPath="$PROJECT_DIR$/PythonFiles/__main__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonFiles/lora.conf" afterPath="$PROJECT_DIR$/PythonFiles/lora.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/syslog_GW.log" afterPath="$PROJECT_DIR$/syslog_GW.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonFiles/SocketListener.py" afterPath="$PROJECT_DIR$/PythonFiles/SocketListener.py" />
     </list>
     <ignored path="Lora_GW.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,10 +86,10 @@
       <file leaf-file-name="SocketListener.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonFiles/SocketListener.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+            <state relative-caret-position="252">
+              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
               <folding>
-                <element signature="e#58#76#0" expanded="true" />
+                <element signature="e#59#77#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1082,10 +1075,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonFiles/SocketListener.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+        <state relative-caret-position="252">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
           <folding>
-            <element signature="e#58#76#0" expanded="true" />
+            <element signature="e#59#77#0" expanded="true" />
           </folding>
         </state>
       </provider>
