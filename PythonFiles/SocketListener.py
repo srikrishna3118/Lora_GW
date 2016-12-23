@@ -78,7 +78,7 @@ class SocketServer(object):
                     TF = (math.log10(R/10000)/3950)+(1/298.15)
                     Temperature = (1/TF)-273.15
                     data_json = {"observations": [{
-                        "value": Temperature, "location": "13.013846 77.570311"}
+                        "value": Temperature}#, "location": "13.013846 77.570311"}
                     ]}
 
                     self.http.putRequest(SENS[sensor_type]['D2'], data_json)
@@ -89,7 +89,7 @@ class SocketServer(object):
                     Level = (int(data_parse['D1']) * V * 100)/400000
 
                     data_json = {"observations": [{
-                        "value": Level, "location": "13.013846 77.570311"}
+                        "value": Level}#, "location": "13.013846 77.570311"}
                     ]}
                     self.http.putRequest(SENS[sensor_type]['D1'], data_json)
                     logger.info(data_json)
@@ -99,7 +99,7 @@ class SocketServer(object):
                         str_sen = "D"+str(count)
                         #print str_sen
                         data_json = {"observations": [{
-                            "value": data_parse[str_sen], "location": "13.013846 77.570311"}
+                            "value": data_parse[str_sen]}#, "location": "13.013846 77.570311"}
                         ]}
                         #print data_json
                         count = count+1
