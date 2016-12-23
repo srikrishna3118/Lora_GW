@@ -97,15 +97,16 @@ class SocketServer(object):
                 else:
                     while count <= int(sen_values):
                         str_sen = "D"+str(count)
-                        print str_sen
+                        #print str_sen
                         data_json = {"observations": [{
                             "value": data_parse[str_sen], "location": "13.013846 77.570311"}
                         ]}
-                        print data_json
+                        #print data_json
                         count = count+1
 
                         #Http request is sent
                         self.http.putRequest(SENS[sensor_type][str_sen], data_json)
+                        logger.info(data_json)
 
                 #for val in data_parse:
                 #    print(val)
