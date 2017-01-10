@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 SENS = {
     "ENERGY":{
-        "D0":"9",
+        "D0":"2",
         "D1":"voltage",
         "D2":"current",
         "D3":"frequency",
