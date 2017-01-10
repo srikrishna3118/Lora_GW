@@ -64,7 +64,7 @@ class RF_TestBed:
 
     def __init__(self):
         # import configuration
-        self.config = Config.MyConfiguration('/home/pi/lora/Lora_GW/PythonFiles/lora.conf')
+        self.config = Config.MyConfiguration('lora.conf')
         self.pin = int(self.config.AUX_PIN)
         self.port = self.config.PORT
         self.pingPackets = self.config.TIME

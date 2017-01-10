@@ -3,7 +3,6 @@ _author_ = 'Srikrishna'
 import requests
 import json
 import random
-import httplib
 
 import logging
 logger = logging.getLogger(__name__)
