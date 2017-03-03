@@ -155,9 +155,5 @@ class SocketServer(object):
             logging.error(e, exc_info=True)
             logger.error('Connection Failed')
 
-        finally:
-            # Clean up the connection
-            conn.close()
-
     def disconnect(self):
         self.connection.close()
